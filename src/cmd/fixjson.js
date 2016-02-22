@@ -28,6 +28,10 @@ function findResource(usedresources, path) {
         if (path.indexOf(usedresources[ii], -usedresources[ii].length) >= 0) {
             return usedresources[ii];
         }
+
+        if (usedresources[ii].indexOf('../') == 0 && usedresources[ii].indexOf(path, -path.length) >= 0) {
+            return usedresources[ii];
+        }
     }
 
     return undefined;
@@ -43,6 +47,20 @@ function procPath(jsonobj, usedresources, attribname) {
     }
 }
 
+function procObjChild(jsonobj, usedresources) {
+    let lstchild = getJsonObjChild(jsonobj, 'Children');
+    if (lstchild != undefined) {
+        for (let ii = 0; ii < lstchild.length; ++ii) {
+            procPath(lstchild[ii], usedresources, 'FileData');
+            procPath(lstchild[ii], usedresources, 'NormalFileData');
+            procPath(lstchild[ii], usedresources, 'PressedFileData');
+            procPath(lstchild[ii], usedresources, 'DisabledFileData');
+
+            procObjChild(lstchild[ii], usedresources);
+        }
+    }
+}
+
 function fixjson(jsonfile) {
     console.log('read ' + jsonfile);
     let buf = fs.readFileSync(jsonfile, 'utf8');
@@ -53,17 +71,18 @@ function fixjson(jsonfile) {
 
     if (lstchild != undefined && usedresources != undefined) {
         for (let ii = 0; ii < lstchild.length; ++ii) {
-            procPath(lstchild[ii], usedresources, 'FileData');
-            procPath(lstchild[ii], usedresources, 'NormalFileData');
-            procPath(lstchild[ii], usedresources, 'PressedFileData');
-            procPath(lstchild[ii], usedresources, 'DisabledFileData');
-            //let srcpath = getJsonObjChild(lstchild[ii], 'FileData', 'Path');
-            //if (srcpath != undefined) {
-            //    let curpath = findResource(usedresources, srcpath);
-            //    if (curpath != undefined) {
-            //        getJsonObjChild(lstchild[ii], 'FileData').Path = curpath;
-            //    }
-            //}
+            procObjChild(lstchild[ii], usedresources);
+        //    procPath(lstchild[ii], usedresources, 'FileData');
+        //    procPath(lstchild[ii], usedresources, 'NormalFileData');
+        //    procPath(lstchild[ii], usedresources, 'PressedFileData');
+        //    procPath(lstchild[ii], usedresources, 'DisabledFileData');
+        //    //let srcpath = getJsonObjChild(lstchild[ii], 'FileData', 'Path');
+        //    //if (srcpath != undefined) {
+        //    //    let curpath = findResource(usedresources, srcpath);
+        //    //    if (curpath != undefined) {
+        //    //        getJsonObjChild(lstchild[ii], 'FileData').Path = curpath;
+        //    //    }
+        //    //}
         }
 
         console.log('write ' + jsonfile);

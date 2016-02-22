@@ -1,0 +1,45 @@
+{
+  "name": "cococ-cli",
+  "version": "0.1.1",
+  "latest": "0.1.1",
+  "description": "cocos cli",
+  "keywords": [
+    "cocos",
+    "cocos-cli"
+  ],
+  "preferGlobal": true,
+  "config": {
+    "publishtest": false
+  },
+  "homepage": "http://www.heysdk.com/",
+  "author": {
+    "name": "zhs007",
+    "email": "sssxueren@gmail.com",
+    "url": "http://www.heysdk.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhs007/cocos-cli"
+  },
+  "bugs": {
+    "url": "https://github.com/zhs007/cocos-cli/issues",
+    "email": "sssxueren@gmail.com"
+  },
+  "directories": {
+    "bin": "./bin"
+  },
+  "main": "./bin/cocoscli.js",
+  "bin": {
+    "cocoscli": "./bin/cocoscli.js"
+  },
+  "scripts": {
+    "start": "node ./bin/cocoscli.js"
+  },
+  "dependencies": {
+    "shelljs": "*",
+    "yargs": "*",
+    "glob": "*"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}

@@ -71,6 +71,11 @@ function fixjson(jsonfile) {
 
     if (lstchild != undefined && usedresources != undefined) {
         for (let ii = 0; ii < lstchild.length; ++ii) {
+            procPath(lstchild[ii], usedresources, 'FileData');
+            procPath(lstchild[ii], usedresources, 'NormalFileData');
+            procPath(lstchild[ii], usedresources, 'PressedFileData');
+            procPath(lstchild[ii], usedresources, 'DisabledFileData');
+
             procObjChild(lstchild[ii], usedresources);
         //    procPath(lstchild[ii], usedresources, 'FileData');
         //    procPath(lstchild[ii], usedresources, 'NormalFileData');

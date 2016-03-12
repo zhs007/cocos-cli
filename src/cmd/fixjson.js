@@ -82,6 +82,12 @@ function fixjson(jsonfile) {
             procPath(lstchild[ii], usedresources, 'PressedFileData');
             procPath(lstchild[ii], usedresources, 'DisabledFileData');
 
+            procPath(lstchild[ii], usedresources, 'NormalBackFileData');
+            procPath(lstchild[ii], usedresources, 'PressedBackFileData');
+            procPath(lstchild[ii], usedresources, 'DisableBackFileData');
+            procPath(lstchild[ii], usedresources, 'NodeNormalFileData');
+            procPath(lstchild[ii], usedresources, 'NodeDisableFileData');
+
             procObjChild(lstchild[ii], usedresources);
         //    procPath(lstchild[ii], usedresources, 'FileData');
         //    procPath(lstchild[ii], usedresources, 'NormalFileData');

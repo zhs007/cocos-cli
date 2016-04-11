@@ -68,6 +68,8 @@ function procObjChild(jsonobj, usedresources) {
             procPath(lstchild[ii], usedresources, 'BallPressedData');
             procPath(lstchild[ii], usedresources, 'BallDisabledData');
 
+            procPath(lstchild[ii], usedresources, 'ImageFileData');
+
             procObjChild(lstchild[ii], usedresources);
         }
     }
@@ -99,6 +101,8 @@ function fixjson(jsonfile) {
             procPath(lstchild[ii], usedresources, 'BallNormalData');
             procPath(lstchild[ii], usedresources, 'BallPressedData');
             procPath(lstchild[ii], usedresources, 'BallDisabledData');
+
+            procPath(lstchild[ii], usedresources, 'ImageFileData');
 
             procObjChild(lstchild[ii], usedresources);
         //    procPath(lstchild[ii], usedresources, 'FileData');

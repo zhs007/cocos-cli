@@ -135,7 +135,7 @@ function procCmd(argv) {
     const sandbox = {};
     let buf = '';
     for (let ii = 1; ii < arr.length; ++ii) {
-        let srcfile = arr[1];
+        let srcfile = arr[ii];
         console.log('read ' + srcfile);
         buf += fs.readFileSync(srcfile, 'utf8');
         buf += '\r\n';

@@ -133,7 +133,7 @@ function procCmd(argv) {
     }
 
     const sandbox = {};
-    let buf;
+    let buf = '';
     for (let ii = 1; ii < arr.length; ++ii) {
         let srcfile = arr[1];
         console.log('read ' + srcfile);

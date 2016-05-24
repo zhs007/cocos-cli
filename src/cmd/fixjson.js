@@ -133,14 +133,16 @@ function procCmd(argv) {
     }
 
     const sandbox = {};
-
-    let srcfile = arr[1];
-    console.log('read ' + srcfile);
-    let buf = fs.readFileSync(srcfile, 'utf8');
+    let buf;
+    for (let ii = 1; ii < arr.length; ++ii) {
+        let srcfile = arr[1];
+        console.log('read ' + srcfile);
+        buf += fs.readFileSync(srcfile, 'utf8');
+        buf += '\r\n';
+        console.log('run ' + srcfile + ' ok!');
+    }
 
     vm.runInNewContext(buf, sandbox);
-
-    console.log('run ' + srcfile + ' ok!');
 
     //console.log('res is ' + util.inspect(sandbox) + ' ok!');
     console.log('g_resources is ' + JSON.stringify(sandbox.g_resources));

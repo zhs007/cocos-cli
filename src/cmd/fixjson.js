@@ -45,6 +45,14 @@ function procPath(jsonobj, usedresources, attribname) {
             getJsonObjChild(jsonobj, attribname).Path = curpath;
         }
     }
+
+    srcpath = getJsonObjChild(jsonobj, attribname, 'Plist');
+    if (srcpath != undefined) {
+        let curpath = findResource(usedresources, srcpath);
+        if (curpath != undefined) {
+            getJsonObjChild(jsonobj, attribname).Plist = curpath;
+        }
+    }
 }
 
 function procObjChild(jsonobj, usedresources) {

@@ -70,6 +70,8 @@ function procObjChild(jsonobj, usedresources) {
 
             procPath(lstchild[ii], usedresources, 'ImageFileData');
 
+            procPath(lstchild[ii], usedresources, 'LabelBMFontFile_CNB');
+
             procObjChild(lstchild[ii], usedresources);
         }
     }
@@ -103,6 +105,8 @@ function fixjson(jsonfile) {
             procPath(lstchild[ii], usedresources, 'BallDisabledData');
 
             procPath(lstchild[ii], usedresources, 'ImageFileData');
+
+            procPath(lstchild[ii], usedresources, 'LabelBMFontFile_CNB');
 
             procObjChild(lstchild[ii], usedresources);
         //    procPath(lstchild[ii], usedresources, 'FileData');

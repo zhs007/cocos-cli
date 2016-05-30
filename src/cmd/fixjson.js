@@ -92,42 +92,47 @@ function fixjson(jsonfile) {
 
     let lstchild = getJsonObjChild(jsonobj, 'Content', 'Content', 'ObjectData', 'Children');
     let usedresources = getJsonObjChild(jsonobj, 'Content', 'Content', 'UsedResources');
+    let lstaniframe = getJsonObjChild(jsonobj, 'Content', 'Content', 'Animation', 'Timelines');
 
-    if (lstchild != undefined && usedresources != undefined) {
-        for (let ii = 0; ii < lstchild.length; ++ii) {
-            procPath(lstchild[ii], usedresources, 'FileData');
-            procPath(lstchild[ii], usedresources, 'NormalFileData');
-            procPath(lstchild[ii], usedresources, 'PressedFileData');
-            procPath(lstchild[ii], usedresources, 'DisabledFileData');
+    if ((lstaniframe !=undefined || lstchild != undefined) && usedresources != undefined) {
+        if (lstchild != undefined) {
+            for (let ii = 0; ii < lstchild.length; ++ii) {
+                procPath(lstchild[ii], usedresources, 'FileData');
+                procPath(lstchild[ii], usedresources, 'NormalFileData');
+                procPath(lstchild[ii], usedresources, 'PressedFileData');
+                procPath(lstchild[ii], usedresources, 'DisabledFileData');
 
-            procPath(lstchild[ii], usedresources, 'NormalBackFileData');
-            procPath(lstchild[ii], usedresources, 'PressedBackFileData');
-            procPath(lstchild[ii], usedresources, 'DisableBackFileData');
-            procPath(lstchild[ii], usedresources, 'NodeNormalFileData');
-            procPath(lstchild[ii], usedresources, 'NodeDisableFileData');
+                procPath(lstchild[ii], usedresources, 'NormalBackFileData');
+                procPath(lstchild[ii], usedresources, 'PressedBackFileData');
+                procPath(lstchild[ii], usedresources, 'DisableBackFileData');
+                procPath(lstchild[ii], usedresources, 'NodeNormalFileData');
+                procPath(lstchild[ii], usedresources, 'NodeDisableFileData');
 
-            procPath(lstchild[ii], usedresources, 'BackGroundData');
-            procPath(lstchild[ii], usedresources, 'ProgressBarData');
-            procPath(lstchild[ii], usedresources, 'BallNormalData');
-            procPath(lstchild[ii], usedresources, 'BallPressedData');
-            procPath(lstchild[ii], usedresources, 'BallDisabledData');
+                procPath(lstchild[ii], usedresources, 'BackGroundData');
+                procPath(lstchild[ii], usedresources, 'ProgressBarData');
+                procPath(lstchild[ii], usedresources, 'BallNormalData');
+                procPath(lstchild[ii], usedresources, 'BallPressedData');
+                procPath(lstchild[ii], usedresources, 'BallDisabledData');
 
-            procPath(lstchild[ii], usedresources, 'ImageFileData');
+                procPath(lstchild[ii], usedresources, 'ImageFileData');
 
-            procPath(lstchild[ii], usedresources, 'LabelBMFontFile_CNB');
+                procPath(lstchild[ii], usedresources, 'LabelBMFontFile_CNB');
 
-            procObjChild(lstchild[ii], usedresources);
-        //    procPath(lstchild[ii], usedresources, 'FileData');
-        //    procPath(lstchild[ii], usedresources, 'NormalFileData');
-        //    procPath(lstchild[ii], usedresources, 'PressedFileData');
-        //    procPath(lstchild[ii], usedresources, 'DisabledFileData');
-        //    //let srcpath = getJsonObjChild(lstchild[ii], 'FileData', 'Path');
-        //    //if (srcpath != undefined) {
-        //    //    let curpath = findResource(usedresources, srcpath);
-        //    //    if (curpath != undefined) {
-        //    //        getJsonObjChild(lstchild[ii], 'FileData').Path = curpath;
-        //    //    }
-        //    //}
+                procObjChild(lstchild[ii], usedresources);
+            }
+        }
+
+        if (lstaniframe != undefined) {
+            for (let ii = 0; ii < lstaniframe.length; ++ii) {
+
+                let srcframes = getJsonObjChild(lstaniframe[ii], 'Frames');
+
+                if (srcframes != undefined) {
+                    for (let jj = 0; jj < srcframes.length; ++jj) {
+                        procPath(srcframes[jj], usedresources, 'TextureFile');
+                    }
+                }
+            }
         }
 
         console.log('write ' + jsonfile);

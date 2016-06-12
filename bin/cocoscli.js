@@ -3,6 +3,7 @@
 "use strict";
 
 require('../src/cmd/fixjson');
+require('../src/cmd/slots');
 //require('../src/cmd/rename');
 
 //var fs = require('fs');

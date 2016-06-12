@@ -47,7 +47,7 @@ function procPath(jsonobj, usedresources, attribname) {
     }
 
     srcpath = getJsonObjChild(jsonobj, attribname, 'Plist');
-    if (srcpath != undefined) {
+    if (srcpath != undefined && srcpath.length > 0) {
         let curpath = findResource(usedresources, srcpath);
         if (curpath != undefined) {
             getJsonObjChild(jsonobj, attribname).Plist = curpath;

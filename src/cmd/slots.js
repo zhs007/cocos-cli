@@ -21,6 +21,7 @@ function procCmd(argv) {
 
     exec.addCmdEx(lst, 'rm ./project.json', './');
     exec.addCmdEx(lst, 'cp src/' + arr[1] + '/project.json ./project.json', './');
+    exec.addCmdEx(lst, 'cocos compile -p web -m release', './');
 
     return true;
 }

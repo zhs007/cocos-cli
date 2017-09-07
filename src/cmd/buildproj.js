@@ -27,6 +27,3 @@ function procCmd(argv) {
 }
 
 basecmd.addCmd('buildproj', procCmd);
-
-
-

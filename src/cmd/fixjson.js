@@ -26,11 +26,20 @@ function getJsonObjChild(jsonobj) {
 function findResource(usedresources, path) {
     for (let ii = 0; ii < usedresources.length; ++ii) {
         if (path.indexOf(usedresources[ii], -usedresources[ii].length) >= 0) {
-            return usedresources[ii];
+            if (path.length > usedresources[ii].length) {
+                if (path.charAt(path.length - usedresources[ii].length - 1) == '/') {
+                    return usedresources[ii];
+                }
+            }
+            else if (path.length == usedresources[ii].length) {
+                return usedresources[ii];
+            }
         }
 
         if (usedresources[ii].indexOf('../') == 0 && usedresources[ii].indexOf(path, -path.length) >= 0) {
-            return usedresources[ii];
+            if (path.charAt(path.length - usedresources[ii].length - 1) == '/') {
+                return usedresources[ii];
+            }
         }
     }
 
